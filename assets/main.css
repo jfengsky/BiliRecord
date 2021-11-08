@@ -1,0 +1,50 @@
+.popmain {
+    width: 300px;
+    padding: 20px;
+}
+
+.side {
+    position:fixed;
+    left: 0;
+    top: 80px;
+    text-align: center;
+    padding: 4px 10px;
+    border: 1px solid #333;
+}
+
+.infopop {
+    width: 400px;
+    height: 300px;
+    background: #e8ffe8;
+    border: 1px solid #9dc;
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 70;
+    padding: 10px;
+}
+.radiolist li {
+    float: left;
+    margin-right: 10px;
+}
+.recordtxt textarea {
+    width: 380px;
+    height: 250px;
+    padding: 4px;
+}
+.subutton button {
+    padding: 2px 10px;
+}
+.close {
+    float: right
+}
+.litype {
+    background: #fff;
+    color: forestgreen;
+    position: absolute; 
+    left: 0;
+    top: 0;
+}
+.upfile {
+    margin-bottom: 12px;
+}

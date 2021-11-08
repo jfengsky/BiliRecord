@@ -1,0 +1,21 @@
+{
+  "name": "bilibili redord",
+  "version": "1.0",
+  "description": "record bilibili views",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "default.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.bilibili.com/*"],
+      "css": ["assets/main.css"],
+      "js": ["lib/jquery.slim.min.js", "assets/page.js"]
+    }
+  ],
+  "permissions": ["tabs", "storage", "http://*/*", "https://*/*", "unlimitedStorage"]
+}
