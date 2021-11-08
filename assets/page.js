@@ -16,10 +16,18 @@ const formatUrl = url => {
 const getStateName = data => {
     const { state } = data || {}
     let temp = '未学习'
-    if (state === '2') {
-        temp = '正在学习'
-    } else if (state === '3') {
-        temp = '已学习'
+    switch (state) {
+        case '2':
+            temp = '正在学习'
+            break;
+        case '3':
+            temp = '已学习'
+            break;
+        case '4':
+            temp = '已看过'
+            break;
+        default:
+            break;
     }
     return temp
 }
@@ -60,6 +68,11 @@ const getStateName = data => {
                         <input type="radio" value="3" name="stype">已学习</li>
                     </label>
                 </li>
+                <li>
+                    <label>
+                        <input type="radio" value="4" name="stype">已看过</li>
+                    </label>
+                </li>
             </ul>
             <div class="recordtxt">
                 <textarea id="J_textarea"></textarea>
@@ -84,7 +97,7 @@ const getStateName = data => {
             }
         });
 
-        
+
         $('body').delegate('#J_close', 'click', () => {
             $('#J_infopop').remove();
             hasAppendPop = false;
@@ -100,7 +113,7 @@ const getStateName = data => {
 
         const title = $('h1').attr('title')
 
-        chrome.extension.sendMessage({ type: 'saveContent', url, radioVal, textareaVal, title }, function (response) {});
+        chrome.extension.sendMessage({ type: 'saveContent', url, radioVal, textareaVal, title }, function (response) { });
 
     })
 
@@ -112,7 +125,7 @@ const getStateName = data => {
     let timeout = setTimeout(() => {
 
         let nextUrlList = []
-        
+
         let boxList = []
 
         // 查询接下来播放列表
@@ -132,10 +145,10 @@ const getStateName = data => {
         chrome.extension.sendMessage({ type: 'searchList', urls: nextUrlList }, function (response) {
             if (response) {
                 const { list } = response
-                if(list && list.length){
+                if (list && list.length) {
                     list.forEach(urlItem => {
                         boxList.some(item => {
-                            if(item.url === urlItem.url){
+                            if (item.url === urlItem.url) {
                                 const stateName = getStateName(urlItem);
                                 $(item.el).css('position', 'relative')
                                 $(item.el).append(`<div class="litype" title="${urlItem.desc}">${stateName}</div>`)
