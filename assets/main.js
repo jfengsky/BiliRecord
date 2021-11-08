@@ -1,5 +1,6 @@
 (function () {
 
+    // 根据时间生成文件名
     const getTime = () => {
         const date = new Date();
         const year = date.getFullYear();
@@ -13,6 +14,7 @@
         return `${year}-${month}-${dat}-${hour}-${minute}-${second}`
     }
 
+    // 根据数据和文件名生成下载文件
     const download = (filename, text) => {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -23,7 +25,7 @@
         document.body.removeChild(element);
     }
 
-
+    // 导出按钮
     $("#J_export").click(() => {
         chrome.extension.sendMessage({ type: 'popexport' }, function (response) {
             const fileName = getTime();
@@ -40,6 +42,7 @@
         });
     })
 
+    // 下载按钮
     $("#J_update").change(e => {
         if(e.target.files && e.target.files.length){
             let file = e.target.files[0];
@@ -56,13 +59,4 @@
             reader.readAsText(file);
         }
     })
-
-    // const BILIURL = 'https://www.bilibili.com/';
-
-    // chrome.tabs.getSelected(null, function (tab) {
-    //     const currentPageUrl = tab.url;
-    //     if(currentPageUrl && currentPageUrl.indexOf(BILIURL) < 0){
-    //         $("#J_submit").attr('disabled', true)
-    //     }
-    // });
 })();

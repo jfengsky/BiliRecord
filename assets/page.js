@@ -97,14 +97,14 @@ const getStateName = data => {
             }
         });
 
-
+        // 关闭窗口
         $('body').delegate('#J_close', 'click', () => {
             $('#J_infopop').remove();
             hasAppendPop = false;
         })
     })
 
-
+    // 提交按钮
     $('body').delegate('#J_submit', 'click', () => {
 
         const radioVal = $("input[type='radio']:checked").val();
